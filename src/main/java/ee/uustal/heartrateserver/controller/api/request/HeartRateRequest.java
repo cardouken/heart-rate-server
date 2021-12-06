@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class HeartRateRequest {
 
     private int heartRate;
+    private int rssi;
     private LocalDateTime timestamp;
 
 }
