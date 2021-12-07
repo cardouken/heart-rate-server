@@ -14,5 +14,6 @@ public class HeartRateResponse {
     private int heartRate;
     private LocalDateTime timestamp;
     private int rssi;
+    private double average20Min;
 
 }

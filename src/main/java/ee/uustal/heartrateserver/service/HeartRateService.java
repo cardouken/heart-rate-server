@@ -19,6 +19,8 @@ import java.util.List;
 @Service
 public class HeartRateService {
 
+    private final MemCacheService memCacheService;
+
     private final List<HeartRateRequest> requests = new ArrayList<>();
     private final List<HeartRateRequest> previousRequests = new ArrayList<>();
 
@@ -41,6 +43,7 @@ public class HeartRateService {
         }
 
         requests.add(request);
+        memCacheService.addHeartRate(request.getHeartRate());
         log.info("Received heart rate: {}", JsonUtility.toJson(response));
         return response;
     }
@@ -76,7 +79,7 @@ public class HeartRateService {
         return new HeartRateResponse()
                 .setTimestamp(request.getTimestamp())
                 .setHeartRate(request.getHeartRate())
-                .setRssi(request.getRssi());
-
+                .setRssi(request.getRssi())
+                .setAverage20Min(memCacheService.getAverage(20));
     }
 }
