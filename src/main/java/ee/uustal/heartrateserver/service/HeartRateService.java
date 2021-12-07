@@ -79,6 +79,7 @@ public class HeartRateService {
                 .setTimestamp(request.getTimestamp())
                 .setHeartRate(request.getHeartRate())
                 .setRssi(request.getRssi())
-                .setAverage20Min(memCacheService.getAverage(20));
+                .setHourlyAverage(memCacheService.getAverage(20))
+                .setSixHourAverage(memCacheService.getAverage(360));
     }
 }
