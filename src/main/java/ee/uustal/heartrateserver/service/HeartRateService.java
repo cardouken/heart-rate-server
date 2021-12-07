@@ -25,11 +25,6 @@ public class HeartRateService {
     private final List<HeartRateRequest> previousRequests = new ArrayList<>();
 
     public HeartRateResponse handle(HeartRateRequest request) {
-        final HeartRateResponse response = new HeartRateResponse()
-                .setTimestamp(request.getTimestamp())
-                .setHeartRate(request.getHeartRate())
-                .setRssi(request.getRssi());
-
         final File logfile = new File("hr.log");
         final String line = request.getTimestamp() + "; " + request.getHeartRate() + System.lineSeparator();
 
@@ -42,10 +37,14 @@ public class HeartRateService {
             log.error("Error writing to file", e);
         }
 
+        log.info("Received heart rate: {}", JsonUtility.toJson(request));
         requests.add(request);
         memCacheService.addHeartRate(request.getHeartRate());
-        log.info("Received heart rate: {}", JsonUtility.toJson(response));
-        return response;
+
+        return new HeartRateResponse()
+                .setTimestamp(request.getTimestamp())
+                .setHeartRate(request.getHeartRate())
+                .setRssi(request.getRssi());
     }
 
     public HeartRateResponse getLatestHeartRate() {
@@ -66,7 +65,7 @@ public class HeartRateService {
                 previousRequests.remove(0);
             }
 
-            log.info(duplicateRequestAmount + " equal duplicate requests");
+            log.info(duplicateRequestAmount + " duplicate requests");
             if (duplicateRequestAmount == 10) {
                 log.info("10 duplicate requests detected, sending empty response");
                 previousRequests.add(request);
