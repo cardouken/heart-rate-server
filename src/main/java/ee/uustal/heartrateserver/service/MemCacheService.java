@@ -3,7 +3,6 @@ package ee.uustal.heartrateserver.service;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Collections;
@@ -15,7 +14,7 @@ import java.util.Map;
 @Service
 public class MemCacheService {
 
-    private static final int MAX_AMOUNT_OF_LATEST_HEART_RATES = 3000;
+    private static final int MAX_AMOUNT_OF_LATEST_HEART_RATES = 75_000;
     private static final ZoneOffset UTC_OFFSET = ZoneOffset.of("+02:00");
     private final Map<Long, Integer> storage;
 
