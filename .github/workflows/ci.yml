@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - develop
 
 jobs:
   build:
@@ -36,5 +37,5 @@ jobs:
           instance-ids: ${{ secrets.INSTANCE_ID }}
 
           working-directory: /home/ec2-user
-          command: docker rm -f $(docker ps -a -q);docker pull cardouken/heart-rate-server:latest;docker run -d --name heart-rate-server --network host --env-file env.properties cardouken/heart-rate-server:latest
+          command: docker rm -f $(docker ps -a -q);docker pull cardouken/heart-rate-server:latest;docker run -d --name heart-rate-server --network host cardouken/heart-rate-server:latest
           comment: Downloaded latest image and deployed on EC2
