@@ -4,11 +4,12 @@ import ee.uustal.heartrateserver.controller.api.request.HeartRateRequest;
 import ee.uustal.heartrateserver.controller.api.response.HeartRateResponse;
 import ee.uustal.heartrateserver.service.HeartRateService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Log4j2
 @RequiredArgsConstructor
 @RestController
 public class HeartRateController {
@@ -19,10 +20,4 @@ public class HeartRateController {
     public HeartRateResponse postHeartRate(@RequestBody HeartRateRequest request) {
         return heartRateService.handle(request);
     }
-
-    @GetMapping(value = "/heart-rate")
-    public HeartRateResponse getHeartRate() {
-        return heartRateService.getLatestHeartRate();
-    }
-
 }
