@@ -48,7 +48,7 @@ public class HeartRateService {
         params.put("timestamp", request.getTimestamp());
         params.put("hourlyAverage", memCacheService.getAverage(60));
         params.put("sixHourAverage", memCacheService.getAverage(360));
-        sseNotificationService.sendNotification(MEMBER_ID, new Event("SSE_EVENT", params));
+        sseNotificationService.sendNotification(MEMBER_ID, new Event("message", params));
 
         return new HeartRateResponse()
                 .setTimestamp(request.getTimestamp())
