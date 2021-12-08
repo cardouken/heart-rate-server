@@ -22,7 +22,6 @@ public class MemCacheService {
         this.storage = Collections.synchronizedMap(new LinkedHashMap<>() {
             @Override
             protected boolean removeEldestEntry(Map.Entry<Long, Integer> eldest) {
-                // get newest entry
                 return size() > MAX_AMOUNT_OF_LATEST_HEART_RATES;
             }
         });
@@ -33,7 +32,6 @@ public class MemCacheService {
     }
 
     public double getAverage(int minutes) {
-
         final List<Integer> heartRates = storage.entrySet().stream()
                 .filter(entry -> entry.getKey() > LocalDateTime.now().minusMinutes(minutes).toEpochSecond(UTC_OFFSET))
                 .map(Map.Entry::getValue)
