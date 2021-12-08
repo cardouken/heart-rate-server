@@ -21,7 +21,7 @@ import java.util.Map;
 @Service
 public class HeartRateService {
 
-    private static final String MEMBER_ID = "696969";
+    private static final String MEMBER_ID = "69";
 
     private final MemCacheService memCacheService;
     private final SseNotificationService sseNotificationService;
