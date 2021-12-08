@@ -24,10 +24,10 @@ public class InMemoryEmitterRepository implements EmitterRepository {
     @Override
     public void remove(String memberId) {
         if (userEmitterMap != null && userEmitterMap.containsKey(memberId)) {
-            log.debug("Removing emitter for member: {}", memberId);
+            log.info("Removing emitter for member: {}", memberId);
             userEmitterMap.remove(memberId);
         } else {
-            log.debug("No emitter to remove for member: {}", memberId);
+            log.info("No emitter to remove for member: {}", memberId);
         }
     }
 
