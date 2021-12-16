@@ -3,4 +3,4 @@
 # heart-rate-server
 Backend for handling incoming heart rate data from the mobile client (https://github.com/cardouken/heart-rate-client-android)
 
-Emits server-side events to be collected by any listener (basic frontend example with jQuery: https://github.com/cardouken/heart-rate-frontend)
+Calculates 1 and 6 hour averages and emits live heart rate data via server-side events to be collected by any listener (basic frontend example with jQuery: https://github.com/cardouken/heart-rate-frontend)
