@@ -3,7 +3,6 @@ package ee.uustal.heartrateserver.service.sse;
 import ee.uustal.heartrateserver.repository.EmitterRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -12,10 +11,9 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @RequiredArgsConstructor
 public class EmitterService {
 
-    private static final String MEMBER_ID = "696969";
-    private static final long EVENTS_TIMEOUT = Long.MAX_VALUE;
+    private static final String MEMBER_ID = "69";
+    private static final long EVENTS_TIMEOUT = 150_000;
     private final EmitterRepository repository;
-
 
     public SseEmitter createEmitter() {
         SseEmitter emitter = new SseEmitter(EVENTS_TIMEOUT);

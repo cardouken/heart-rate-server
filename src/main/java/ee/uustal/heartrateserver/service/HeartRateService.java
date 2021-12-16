@@ -21,7 +21,7 @@ import java.util.Map;
 @Service
 public class HeartRateService {
 
-    private static final String MEMBER_ID = "696969";
+    private static final String MEMBER_ID = "69";
 
     private final MemCacheService memCacheService;
     private final SseNotificationService sseNotificationService;
@@ -48,7 +48,8 @@ public class HeartRateService {
         params.put("timestamp", request.getTimestamp());
         params.put("hourlyAverage", memCacheService.getAverage(60));
         params.put("sixHourAverage", memCacheService.getAverage(360));
-        sseNotificationService.sendNotification(MEMBER_ID, new Event("SSE_EVENT", params));
+
+        sseNotificationService.sendNotification(MEMBER_ID, new Event("message", params));
 
         return new HeartRateResponse()
                 .setTimestamp(request.getTimestamp())
